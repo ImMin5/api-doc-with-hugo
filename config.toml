@@ -1,0 +1,37 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'Cloudforet-io API Documentation'
+theme = 'hugo-book'
+
+
+# (Optional) Set this to true to enable 'Last Modified by' date and git author
+#  information on 'doc' type pages.
+enableGitInfo = true
+
+[frontmatter]
+date = ["date", ":filename", "publishDate", "lastmod"]
+
+
+[params]
+BookTheme = 'light'
+version_menu = "Versions"
+copyright = "Team CloudONE"
+#privacy_policy = "https://policies.google.com/privacy"
+latest = "v1.9.6"
+#archived_version = true
+# Repository configuration (URLs for in-page links to opening issues and suggesting changes)
+github_repo = "https://github.com/immin5/api-doc-with-hugo"
+body_classes = "georgia bg-near-white"
+# Enable Algolia DocSearch
+algolia_docsearch = false
+# Enable Lunr.js offline search
+offlineSearch = true
+showedit = true
+docsbranch = "master"
+currentUrl = "https://cloudforet.io/home/"
+# Enable syntax highlighting and copy buttons on code blocks with Prism
+prism_syntax_highlighting = false
+# Configure url of latest version
+# url_latest_version = ""
+subtitle = "Cloudforet"
+BookSearch = true
