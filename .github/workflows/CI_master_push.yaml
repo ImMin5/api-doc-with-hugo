@@ -37,6 +37,7 @@ jobs:
       - name: git checkout
         uses: actions/checkout@v4
         with:
+          token: ${{ secrets.TOKEN }}
           ref: ${{ env.BRANCH }}
         
       - name: make random named text file
