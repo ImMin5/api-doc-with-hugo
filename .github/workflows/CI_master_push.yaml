@@ -10,10 +10,6 @@ on:
         description: 'enter version(x.y.z)'
         required: true
         default: '1.0.0'
-      branch:
-        description: 'Enter branch name'
-        required: true
-        default: 'master'  # 기본 브랜치 이름 설정
 
 env:
   VERSION: ${{ github.event.inputs.version }} 
