@@ -21,7 +21,7 @@ on:
 
 env:
   VERSION: ${{ github.event.inputs.version }} 
-  BRANCH: ${{ github.event.inputs.branch }}
+  BRANCH: ${{ github.ref }}
 
 
 jobs:
