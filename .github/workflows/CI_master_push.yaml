@@ -33,6 +33,12 @@ jobs:
         run: |
           echo "VERSION: $VERSION"
           echo "BRANCH_NAME: $BRANCH"
+        
+      - name: git checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BRANCH }}
+        
       - name: make random named text file
         run: |
           python -c "import random, string; file_content = ''.join(random.choice(string.ascii_letters) for _ in range(100)); open('random_file.txt', 'w').write(file_content)"
