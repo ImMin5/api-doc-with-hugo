@@ -1,0 +1,48 @@
+# Sample workflow for building and deploying a Hugo site to GitHub Pages
+name: CI_TEST
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches:
+      - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'enter version(x.y.z)'
+        required: true
+        default: '1.0.0'
+      branch:
+        description: 'Enter branch name'
+        required: true
+        default: 'master'  # 기본 브랜치 이름 설정
+
+env:
+  VERSION: ${{ github.event.inputs.version }} 
+  BRANCH: ${{ github.event.inputs.branch }}
+
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check variables
+        run: |
+          echo "VERSION: $VERSION"
+          echo "BRANCH_NAME: $BRANCH"
+
+      - name: Push artifacts to input branch
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: ${{ env.BRANCH }}
+          commit_message: "[CI] api has been built"
+          commit_user_name: ImMin5
+          commit_user_email: rlaalsgh5151@naver.com
+          commit_author: ImMin5 <rlaalsgh5151@naver.com>
+          push_options: '--force'
+          tagging_message: ${{ env.VERSION }}
+
+          
