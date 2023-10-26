@@ -47,5 +47,5 @@ jobs:
           tags: cloudforet/${{ github.event.repository.name }}:${{ env.VERSION }}
           build-args: |
             PACKAGE_VERSION=${{ env.PACKAGE_VERSION }} 
-            BRANCH_NAME=${{ env.BRANCH_NAME }} # only for console-api-v2
+            BRANCH_NAME=${{ env.BRANCH_NAME }}
 
