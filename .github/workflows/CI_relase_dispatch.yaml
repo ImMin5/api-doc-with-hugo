@@ -1,0 +1,51 @@
+name: "[Dispatch] Release"
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'enter version(x.y.z)'
+        required: true
+        default: '1.0.0'
+      container_arch:
+        type: choice
+        description: 'choose container architecture'
+        default: linux/amd64,linux/arm64
+        options:
+        - "linux/amd64"
+        - "linux/amd64,linux/arm64"
+
+
+env:
+  ARCH: ${{ github.event.inputs.container_arch }}
+  VERSION: ${{ github.event.inputs.version }}
+  PACKAGE_VERSION: ${{ github.event.inputs.version }}
+  BRANCH_NAME: ${{ github.ref_name }}
+
+jobs:
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build and push to dockerhub
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          platforms: ${{ env.ARCH }}
+          push: true
+          tags: cloudforet/${{ github.event.repository.name }}:${{ env.VERSION }}
+          build-args: |
+            PACKAGE_VERSION=${{ env.PACKAGE_VERSION }}
+            BRANCH_NAME=${{ env.BRANCH_NAME }} # Only for console-api-v2`
+
