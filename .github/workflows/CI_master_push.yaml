@@ -30,16 +30,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.TOKEN }}
-          ref: ${{ env.BRANCH }}
         
       - name: make random named text file
         run: |
-          python -c "import random, string; file_content = ''.join(random.choice(string.ascii_letters) for _ in range(100)); open('random_file.txt', 'w').write(file_content)"
+          python -c "import random, string; file_content = ''.join(random.choice(string.ascii_letters) for _ in range(110)); open('random_file.txt', 'w').write(file_content)"
 
       - name: Push artifacts to input branch
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          branch: ${{ env.BRANCH }}
           commit_message: "[CI] api has been built"
           commit_user_name: ImMin5
           commit_user_email: rlaalsgh5151@naver.com
