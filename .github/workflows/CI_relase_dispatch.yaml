@@ -43,9 +43,9 @@ jobs:
         with:
           context: .
           platforms: ${{ env.ARCH }}
-          push: true
+          push: false
           tags: cloudforet/${{ github.event.repository.name }}:${{ env.VERSION }}
           build-args: |
-            PACKAGE_VERSION=${{ env.PACKAGE_VERSION }}
-            BRANCH_NAME=${{ env.BRANCH_NAME }}
+            PACKAGE_VERSION=${{ env.PACKAGE_VERSION }} 
+            BRANCH_NAME=${{ env.BRANCH_NAME }} # only for console-api-v2
 
