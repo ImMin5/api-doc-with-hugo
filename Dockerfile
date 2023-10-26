@@ -9,7 +9,7 @@ ENV LOG_DIR /var/log/spaceone
 ENV GIT_DIR /tmp/git
 ENV OPENAPI_JSON_DIR /opt/openapi
 ENV PACKAGE_VERSION=$PACKAGE_VERSION
-
+ENV BRANCH_NAME=$BRANCH_NAME
 
 RUN apt-get update && apt-get install -y git
 
